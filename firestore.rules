@@ -1,0 +1,34 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+    function isAdmin() { return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin"; }
+
+    match /users/{uid} {
+      allow read: if signedIn();
+      allow create: if isOwner(uid);
+      allow update: if isOwner(uid) || isAdmin();
+      allow delete: if isOwner(uid) || isAdmin();
+    }
+
+    match /adverts/{advertId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.advertiserId == request.auth.uid;
+      allow update, delete: if signedIn() && (resource.data.advertiserId == request.auth.uid || isAdmin());
+    }
+
+    match /payments/{paymentId} {
+      allow create: if signedIn() && request.resource.data.userId == request.auth.uid;
+      allow read: if signedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow update: if isAdmin();
+    }
+
+    match /conversations/{conversationId} {
+      allow read, create, update: if signedIn() && request.auth.uid in resource.data.participants;
+    }
+    match /messages/{messageId} {
+      allow read, create: if signedIn() && request.auth.uid in resource.data.participants;
+    }
+  }
+}

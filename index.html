@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#650000">
+  <meta name="description" content="Ivy House Marketing — Advertise your business. Discover products and services.">
+  <title>Ivy House Marketing | Advertise Your Business</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="toast-root" aria-live="polite"></div>
+
+  <div id="landing" class="screen">
+    <div class="hero-collage" aria-hidden="true">
+      <div class="collage-tile" style="background-image:url('./assets/market-candy.jpg')"></div>
+      <div class="collage-tile" style="background-image:url('./assets/market-beauty.jpg')"></div>
+      <div class="collage-tile" style="background-image:url('./assets/market-transport.jpg')"></div>
+      <div class="collage-tile" style="background-image:url('./assets/market-salon.jpg')"></div>
+      <div class="collage-tile" style="background-image:url('./assets/market-snacks.jpg')"></div>
+      <div class="collage-tile" style="background-image:url('./assets/market-photography.jpg')"></div>
+      <div class="collage-overlay"></div>
+    </div>
+
+    <header class="public-nav">
+      <div class="brand-lockup">
+        <div class="brand-mark">IVY</div>
+        <div>
+          <div class="brand-name">IVY HOUSE</div>
+          <div class="brand-sub">MARKETING</div>
+        </div>
+      </div>
+      <button class="btn btn-light" id="open-login">Sign in</button>
+    </header>
+
+    <main class="landing-content">
+      <span class="eyebrow">YOUR BOARDING HOUSE BUSINESS CENTRE</span>
+      <h1>Advertise your business.<br><span>Get discovered.</span></h1>
+      <p class="hero-copy">A professional marketplace for students to showcase products and services, connect with customers and grow — right from the boarding house.</p>
+      <div class="hero-actions">
+        <button class="btn btn-gold btn-large" id="open-signup">Create an account</button>
+        <button class="btn btn-ghost btn-large" id="open-explore">Explore adverts</button>
+      </div>
+      <div class="hero-note">
+        <span class="dot"></span> Advert subscriptions are <strong>$0.05 USD / 3 days</strong> via EcoCash.
+      </div>
+    </main>
+
+    <section class="feature-strip">
+      <div><b>SELL & PROMOTE</b><span>Goods and services</span></div>
+      <div><b>DISCOVER</b><span>Search local student businesses</span></div>
+      <div><b>CONNECT</b><span>Message sellers directly</span></div>
+      <div><b>DELIVER</b><span>Choose seller delivery options</span></div>
+    </section>
+  </div>
+
+  <div id="auth-screen" class="screen hidden">
+    <div class="auth-shell">
+      <div class="auth-visual">
+        <div class="auth-brand">IVY</div>
+        <div class="auth-visual-copy">
+          <span class="eyebrow">IVY HOUSE MARKETING</span>
+          <h2>Make your business<br>impossible to miss.</h2>
+          <p>Advertise. Connect. Grow.</p>
+        </div>
+      </div>
+      <div class="auth-card">
+        <button class="icon-btn auth-close" id="close-auth" aria-label="Close">×</button>
+        <div class="brand-mark brand-mark-small">IVY</div>
+        <h2 id="auth-title">Welcome back</h2>
+        <p class="muted" id="auth-subtitle">Sign in to access your dashboard.</p>
+
+        <div id="auth-role-picker" class="role-picker">
+          <button class="role-card active" data-role="customer"><span>🛍️</span><b>Customer</b><small>Explore & shop</small></button>
+          <button class="role-card" data-role="advertiser"><span>📣</span><b>Advertiser</b><small>Promote your business</small></button>
+        </div>
+
+        <div class="auth-tabs">
+          <button class="tab active" data-auth-mode="login">Sign in</button>
+          <button class="tab" data-auth-mode="signup">Create account</button>
+        </div>
+
+        <form id="auth-form">
+          <label>Email<input type="email" id="auth-email" required placeholder="you@example.com"></label>
+          <label>Password<input type="password" id="auth-password" required minlength="6" placeholder="Minimum 6 characters"></label>
+          <div id="signup-fields" class="hidden">
+            <label>Username<input type="text" id="auth-username" placeholder="e.g. IvyBeauty"></label>
+            <label>Full name<input type="text" id="auth-fullname" placeholder="Your name"></label>
+          </div>
+          <button class="btn btn-maroon btn-full" type="submit" id="auth-submit">Sign in</button>
+        </form>
+        <button class="btn btn-outline btn-full" id="demo-login">Use demo mode</button>
+        <p class="tiny">Your role controls which dashboard you can see.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="app-screen" class="screen hidden">
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">IVY</div>
+          <div><b>IVY HOUSE</b><span>MARKETING</span></div>
+        </div>
+        <div id="user-mini" class="user-mini"></div>
+        <nav id="side-nav"></nav>
+        <div class="sidebar-bottom">
+          <button class="nav-item" data-view="help">❔ <span>Help</span></button>
+          <button class="nav-item" id="logout-btn">↪ <span>Sign out</span></button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="app-header">
+          <button class="mobile-menu icon-btn" id="mobile-menu">☰</button>
+          <div>
+            <span class="eyebrow" id="page-kicker">IVY HOUSE</span>
+            <h1 id="page-title">Explore adverts</h1>
+          </div>
+          <div class="header-actions">
+            <button class="icon-btn" id="messages-shortcut" title="Messages">💬</button>
+            <button class="avatar" id="header-avatar">I</button>
+          </div>
+        </header>
+        <div id="view-root"></div>
+      </main>
+    </div>
+  </div>
+
+  <div id="modal-root"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
